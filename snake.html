@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Hello, World!</title>
+  <style>
+  td, tr {
+    height:50px;
+    width:50px;
+  }
+  button {
+    width:50px;
+    height:50px;
+    background-color:lightblue;
+    font-size:300%;
+  </style>
+</head>
+<body>
+  <table>
+    <tr>
+      <td style="width:300px">
+        <p id="p1"></p>
+        <p id="p2"></p>
+        <p><a id="p3">difficult(0): </a><input type="button" id="dif" onclick="swD();" value="next(=)"></p>
+        <p id="p4"></p>
+        <p id="p5"></p>
+      </td>
+      <td style="width:600px" style="height:600px"><canvas width="600" height="600" style="background-color:black" id="canv"></canvas></td>
+      <td style="width:150px">
+        <center>
+          <table>
+            <tr>
+              <td></td>
+              <td><button id="up" onclick="tu();">∆</button></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><button id="left" onclick="tl();"><b><</b></button></td>
+              <td></td>
+              <td><button id="right" onclick="tr();"><b>></b></button></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button id="down" onclick="td();">V</button></td>
+              <td></td>
+            </tr>
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+  <script>
+    var snake = {x:{}, y:{},};
+    var diff = document.getElementById("dif");
+    var i = 0;
+	var pf = 0;
+    var score = -1;
+    var mx = 0;
+    var my = 0;
+    var sx = 295;
+	var cs = 0;
+    var sy = 295;
+    var ax;
+    var ay;
+	var IsLive = 1;
+	var kkd = 0;
+    var canvas = document.getElementById("canv");
+    var ctx = canvas.getContext("2d");
+    var p1=document.getElementById('p1');
+    var p2=document.getElementById('p2');
+    var p3=document.getElementById('p3');
+    var p4=document.getElementById('p4');
+    var p5=document.getElementById('p5');
+	var colors = ["#cccccc", "#cccccc", "#0000ff", "#0000ff"];
+	var difs=[1,3,5,7.5,15];
+    ctx.fillStyle = "black";
+	ctx.font = "30px Arial";
+    function rect(x, y, color) {
+      ctx.fillStyle = color;
+      ctx.fillRect  (x, y, 15, 15);
+    }
+    function clear() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+    }
+	function swD() {
+		pf++;
+		if (pf>=5) {
+			pf=0;
+		}
+	}
+    function tu() {
+      if (my==0 && kkd==0) {
+        my=-1;
+        mx=0;
+		kkd=15;
+      }
+    }
+    function td() {
+      if (my==0 && kkd==0) {
+        my=1;
+        mx=0;
+		kkd=15;
+      }
+    }
+    function tl() {
+      if (mx==0 && kkd==0) {
+        mx=-1;
+        my=0;
+		kkd=15;
+      }
+    }
+    function tr() {
+      if (mx==0 && kkd==0) {
+        mx=1;
+        my=0;
+		kkd=15;
+      }
+    }
+	document.addEventListener("keydown",keyPush);
+	function keyPush(evt) {
+		switch(evt.keyCode) {
+			case 187:
+				swD();
+				break;
+			case 37:
+				tl();
+				break;
+			case 38:
+				tu();
+				break;
+			case 39:
+				tr();
+				break;
+			case 40:
+				td();
+				break;
+			case 32:
+				if (IsLive == 0) {
+				  sx=295;
+				  sy=295;
+				}
+				IsLive = 1;
+				break;
+			case evt.keyCode:
+				console.log(evt.keyCode);
+		}
+	}
+    function genA() {
+      ax=Math.round(Math.random()*570)+15;
+      ay=Math.round(Math.random()*570)+15;
+      score+=1;
+    }
+    function csc(bx,by) {
+      if (sx+11.2>=bx-3.7 && bx+11.2>=sx-3.7 && sy+11.2>=by-3.7 && by+11.2>=sy-3.7) {
+        return("True");
+      }
+    }
+	function GameOver() {
+	  //alert("your score is: "+score);
+	  ctx.fillText(("your score is: "+score),10,50);
+	  IsLive = 0;
+	  mx=0;
+	  my=0;
+	  genA();
+	  score=0;
+	}
+    genA();
+    date1=0;
+    interval=setInterval(loop,1000/40);
+	
+    function loop() {
+	  console.log(IsLive);
+	  if (IsLive==1) {
+	    dif=difs[pf];
+        sx+=dif*mx;
+        sy+=dif*my;
+        i+=dif;
+	    kkd-=dif;
+	    
+	    if (kkd < 0) {
+	      kkd = 0;
+	    }
+	    
+        if (csc(ax,ay) == "True") {
+	  	genA();
+	    }
+       
+        if (sx<0) {sx=590;}
+        if (sx>590) {sx=0;}
+        if (sy<0) {sy=590;}
+        if (sy>590) {sy=0;}
+  
+        if (i>=15) {
+          i=0
+          date0=date1;
+          date1 = new Date();
+          date1=date1.getTime();
+          spf=date1-date0;
+          for (i1=score+2; i1>0; i1--) {
+            snake['x'][i1]=snake['x'][i1-1];
+            snake['y'][i1]=snake['y'][i1-1];
+          }
+          snake['x'][0]=sx;
+          snake['y'][0]=sy;
+        }
+        //sm="mx: "+mx+"; my: "+my+";";
+        //p1.innerHTML=sm;
+        //sp="sx: "+sx+"; sy: "+sy+";";
+        p2.innerHTML=kkd;
+        //ap="ax: "+ax+"; ay: "+ay+";";
+        p3.innerHTML='difficult('+pf+'): ';
+        p4.innerHTML="score: "+score;
+        p5.innerHTML="fps: "+Math.floor((15000/spf)/dif);
+        clear();
+        rect(ax,ay,"#00ff00");
+        for (i1=score+2; i1>=0; i1--) {
+          if (csc(snake['x'][i1],snake['y'][i1])=='True' && i1>2 && i1<score+2) {
+            GameOver();			
+          }
+          if (ax+11.2>=snake['x'][i1]-3.7 && snake['x'][i1]+11.2>=ax-3.7 && ay+11.2>=snake['y'][i1]-3.7 && snake['y'][i1]+11.2>=ay-3.7) {
+            genA();
+            score--;
+          }
+          rect(snake['x'][i1],snake['y'][i1],colors[i1%colors.length]);
+        }
+		rect(sx,sy,"#ff00ff");
+		
+		
+      }
+	}
+  </script>
+</body>
+</html>
