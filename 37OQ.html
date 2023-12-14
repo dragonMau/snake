@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>HTML</title>
+  <style>
+body {
+    font-size: 15pt;
+}
+.slider {
+  position: relative;
+  top:80px;
+  align-self: center;
+  -webkit-appearance: none;
+  width: 170px;
+  height: 10px;
+  background: #000;
+  outline: none;
+  border: 5px solid mediumpurple;
+  border-radius: 8px;
+  transform: rotate(-90deg);
+}
+
+
+/* for chrome/safari */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 60px;
+  background: #000;
+  cursor: pointer;
+  border: 5px solid magenta;
+  border-radius: 4px;
+}
+</style>
+</head>
+
+<body><table width="375">
+  <tr>
+    <td colspan="3"><canvas id="field" width="375" height="450"></canvas></td>
+  </tr>
+  <tr>
+    <td><input width="100px" class="slider" id="ls" type="range" min="-4" max="6" value="0"></td>
+    <td width="175px"></td>
+    <td><input width="100px" class="slider" id="rs" type="range" min="-4" max="6" value="0"></td>
+  </tr>
+  </table>  
+  <script>
+  // dt always assumed as 1/60
+console.log('Hello World!');
+let canvas = document.getElementById("field");
+let ctx = canvas.getContext("2d");
+let ls = document.getElementById("ls");
+let rs = document.getElementById("rs");
+function square(r) {
+  ctx.beginPath();
+  ctx.moveTo(r[0][0],r[0][1]);
+  ctx.lineTo(r[1][0],r[1][1]);
+  ctx.lineTo(r[2][0],r[2][1]);
+  ctx.lineTo(r[3][0],r[3][1]);
+  ctx.closePath();
+  ctx.fill();
+}
+function clear(c=ctx.fillStyle) {
+  previous_color = ctx.fillStyle;
+  ctx.fillStyle = c;
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = previous_color;
+}
+function color(c) {
+  ctx.fillStyle = c;
+}
+function rotate(cx, cy, ox, oy, a){
+  rx = cx+(ox*Math.cos(a))-(oy*Math.sin(a));
+  ry = cy+(ox*Math.sin(a))+(oy*Math.cos(a));
+  return [rx, ry];
+}
+function rect(posx,posy, width, height, r=0, slidex=0, slidey=0){
+  p1=rotate(posx, posy, width/2+slidey, height/2+slidex,r);
+  p2=rotate(posx, posy, width/2+slidey,-height/2+slidex,r);
+  p3=rotate(posx, posy, -width/2+slidey,height/2+slidex,r);
+  p4=rotate(posx, posy, -width/2+slidey,-height/2+slidex,r);
+  return [p1, p2, p4, p3];
+}
+
+
+clear("#ffb7c5");
+color("#367270");
+
+const l = 30;
+const w = l*2/3;
+
+var x = 150;
+var y = 40;
+var r = 90;
+var l_u_key = 0;
+var l_d_key = 0;
+var r_u_key = 0;
+var r_d_key = 0;
+var leaf = {
+  x: [],
+  y: []
+}
+
+function ref(){
+  clear("#ffb7c505");
+  color("#367270");
+  // tank frame
+  square (rect(x,y,w,l,r/180*Math.PI));
+  color("#165250");
+  // tank gun
+  square(rect(x,y,l*2/15,l/3,r/180*Math.PI, l*-7/15));
+  // tank top
+  square(rect(x,y,l/2,l*3/5,r/180*Math.PI));
+  color("#3");
+  // back part
+  square(rect(x,y,w,1,r/180*Math.PI, l/2));
+}
+
+// takes canvas sides as borders, variables w, l, r, are width, length and rotation(degrees) of a tank
+function forward(range){
+  // for vertical walls (horizontal movement)
+  dx = 0;
+  if (r != 90 || r != 270) {
+   t_ = Math.tan(r/180*Math.PI);
+   // { y = $t_ * (x - $x) + $y
+   // { x = 0
+   // ==========================
+   // y = - $t_ * $x + $y
+   // check range to point.. pythagorhean?
+   // ($x - 0)**2 + ($y+$t_*$x+$y)**2 <= range**2
+   // $x**2 + (2*$y+$t_*$x)**2 <= range**2
+   if (x**2 + (2*y+t_*x)**2 > range**2) {	
+   	// there is no collision]
+   	console.log(x, y+t_*x, y);
+   	<!-- console.log(x**2 + (2*y+t_*x)**2); -->
+    dx = range*Math.sin(r/180*Math.PI);
+  }}
+  dy = range*Math.cos(r/180*Math.PI);
+
+  <!-- // same for horixontal walls (vertical movement) -->
+  <!-- dy = 0; -->
+  <!-- if (r != 0 || r != 180) { -->
+   <!-- t_ = Math.tan((r+90)/180*Math.PI); -->
+   <!-- // { y = $t_ * (x - $x) + $y -->
+   <!-- // { x = 0 -->
+   <!-- // ========================== -->
+   <!-- // y = - $t_ * $x + $y -->
+   <!-- // check range to point.. pythagorhean? -->
+   <!-- // ($x - 0)**2 + ($y+$t_*$x+$y)**2 <= range**2 -->
+   <!-- // $x**2 + (2*$y+$t_*$x)**2 <= range**2 -->
+   <!-- if (x**2 + (2*y+t_*x)**2 > range**2) { -->
+   	<!-- // there is no collision -->
+    <!-- dy = + range*Math.sin(r/180*Math.PI); -->
+  <!-- }} -->
+
+  
+
+  
+  // i have four walls 
+  // x = 0
+  // x = canvas.width
+  // y = 0
+  // y = canvas.heigh
+  // i need to check for intersections of those 4 lines and line of movement of a tank
+  // for all four points (corners) of a tank ???
+  x += dx;
+  y -= dy;
+  // d_y = + range*Math.cos(r/180*Math.PI);
+}
+
+function noise(){
+  nx = Math.floor(Math.random()*(canvas.width/5));
+  ny = Math.floor(Math.random()*(canvas.height/5));
+  previous_color = ctx.fillStyle;
+  color("#00FF00");
+  ctx.beginPath();
+  ctx.arc(nx*5+2.5, ny*5+2.5, 3.54,0,360);
+  leaf.x.unshift(nx*5-1);
+  leaf.y.unshift(ny*5-1);
+  ctx.closePath();
+  ctx.fill(); 
+  color("#ffb7c5")
+  ctx.fillRect(leaf.x[180],leaf.y[180],7
+  ,7);
+  leaf.x.length = 180;
+  leaf.y.length = 180;
+  color(previous_color);
+}
+
+document.addEventListener("keydown",(e)=>{ 
+  if (e.keyCode==68){l_u_key = 1;} 
+  if (e.keyCode==67){l_d_key = 1;} 
+  if (e.keyCode==74){r_u_key = 1;} 
+  if (e.keyCode==78){r_d_key = 1;} 
+}); 
+document.addEventListener("keyup",(e)=>{ 
+  if (e.keyCode==68){l_u_key = 0;} 
+  if (e.keyCode==67){l_d_key = 0;} 
+  if (e.keyCode==74){r_u_key = 0;} 
+  if (e.keyCode==78){r_d_key = 0;} 
+}); 
+
+a = setInterval(() => {
+  noise();
+  ref();
+  r+=ls.value/10;
+  forward(ls.value/10);
+  r-=rs.value/10;
+  forward(rs.value/10);
+  r%=360;
+},1000/60);
+
+b = setInterval(() => {
+  if ((l_u_key &&! l_d_key) && ls.value*1 < ls.max*1){ls.value = ls.value*1 + 1;} 
+  if ((l_d_key &&! l_u_key) && ls.value*1 > ls.min*1){ls.value = ls.value*1 - 1;} 
+  if ((r_u_key &&! r_d_key) && rs.value*1 < rs.max*1){rs.value = rs.value*1 + 1;} 
+  if ((r_d_key &&! r_u_key) && rs.value*1 > rs.min*1){rs.value = rs.value*1 - 1;} 
+  if (l_u_key && l_d_key){ls.value = 0;}
+  if (r_u_key && r_d_key){rs.value = 0;}
+}, 1000/16);
+
+
+</script>
+</body>
+</html>
