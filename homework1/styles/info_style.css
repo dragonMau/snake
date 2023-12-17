@@ -1,5 +1,5 @@
 .info{
-    margin: 100px auto 0px auto;
+    margin: 100px auto 100px auto;
     width: 90vw;
 }
 .info_header h1{
@@ -14,7 +14,11 @@
 .info_content{
     display: flex;
 }
-.info_elements{
+.info_elements {
+    /* justify-content: center;
+    align-items: center; */
+}
+.info_elements div{
     display: flex;
     flex-wrap: wrap;
 }
@@ -39,8 +43,9 @@
 }
 .info_image{
     width: 350px;
-    height: 350px;
+    /* height: 350px; */
     box-shadow: 30px 30px rgb(131, 131, 0) ;
+    margin-left: auto;
     margin-right: 30px;
     margin-bottom: 30px;
 }
