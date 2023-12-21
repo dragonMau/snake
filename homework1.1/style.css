@@ -1,0 +1,44 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.row {
+    height: 80vh;
+}
+.row-flex {
+    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.block1{
+    margin-left: 7%;
+    width: 40%;
+}
+.block1_1{
+    padding: 5px;
+}
+.text-block1{
+    color: azure;
+    /* font-family: Impact, 'Haettenschweiler', Arial Narrow Bold, sans-serif; */
+    font-weight: 400px;
+    margin-bottom: 15px;
+    padding: 5px;
+    font-size: 2.5rem;
+}
+.block1>.block1_1>hr{
+    margin-top: 10px;   
+    color: yellow;
+    /* width: 50rem; */
+}
+.block1_1>p{
+    color: azure;
+    padding: 10px;
+    font-weight: 100;
+    font-size: 1.5rem;
+}
+/*  */
+.block2{
+    padding: 5% 0px 5% 0px;
+    margin-right: 5%;
+}

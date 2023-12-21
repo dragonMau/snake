@@ -5,54 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/order_style.css">
-    <link rel="stylesheet" href="styles/info_style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- order part -->
-    <div class="order">
-        <div class="order_content">
-            <h3 class="order_header">get book copy today!</h3>
-            <hr>
-            <p class="order_text">We believe that bookstores are essential to a healthy culture. They're where authors can connect with readers.</p>
-            <button class="order_button"  onclick="alert('order clicked!')">order today</button>
+    <div class="row row-flex">
+        <div class="block1">
+            <div class="block1_1">
+                <h2 class="text-block1">Get Book Copy Today!</h2>
+                <hr width="50rem">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae laboriosam eius voluptatem provident nihil nulla at voluptate culpa quis quasi incidunt, nobis beatae eos temporibus et commodi quam alias consequuntur?</p>
+                <button>Order Today</button>
+            </div>
         </div>
-        <img class="order_image" src="assets/tea.png">
+        <div class="block2">
+            <img src="assets/tea.png" alt="">
+        </div>
     </div>
 
-    <!-- what you'll learn (info) part -->
-    <div class="info">
-        <div class="info_header">
-            <h1>What will you learn?</h1>
+    <div class="row_t">
+        <div class="row_t">
+            <h2>What Will You Learn?</h2>
             <hr>
         </div>
-        <div class="info_content">
-            <div class="info_elements">
+        <div class="block">
+            <div class="col">
                 <div>
-                    <div class="info_element">
-                        <h3>01</h3>
-                        <p>Use HDFS & Map Reduce for storing & analysing data at scale.</p>
-                    </div>
-                    <div class="info_element">
-                        <h3>02</h3>
-                        <p>Consume streaming data using Spark Streaming, Flink, and Storm.</p>
-                    </div>
+                    <span>01</span>
                 </div>
-                <div>
-                    <div class="info_element">
-                        <h3>03</h3>
-                        <p>Choose an appropriate data storage technology for your application.</p>
-                    </div>
-                    <div class="info_element">
-                        <h3>04</h3>
-                        <p>Analyse non-relational data using HBase, Cassandra, and MongoDB.</p>
-                    </div>
-                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero aliquam dolorem, fuga incidunt voluptatem molestiae enim odit mollitia veniam doloremque, ducimus eius in maiores illo vitae, neque aspernatur asperiores temporibus.</p>
             </div>
-            <img class="info_image" src="assets/book.png">
+            <div class="col">
+                <div>
+                    <span>02</span>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero aliquam dolorem, fuga incidunt voluptatem molestiae enim odit mollitia veniam doloremque, ducimus eius in maiores illo vitae, neque aspernatur asperiores temporibus.</p>
+            </div>
+            <div class="col">
+                <div>
+                    <span>03</span>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero aliquam dolorem, fuga incidunt voluptatem molestiae enim odit mollitia veniam doloremque, ducimus eius in maiores illo vitae, neque aspernatur asperiores temporibus.</p>
+            </div>
+            <div class="col">
+                <div>
+                    <span>04</span>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero aliquam dolorem, fuga incidunt voluptatem molestiae enim odit mollitia veniam doloremque, ducimus eius in maiores illo vitae, neque aspernatur asperiores temporibus.</p>
+            </div>
+        </div>
+        <div class="block">
+            <img src="assets/book.png" alt="">
         </div>
     </div>
-    <!-- <div style="height: 500px;"></div> -->
 </body>
 </html>
