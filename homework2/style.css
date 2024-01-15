@@ -1,0 +1,59 @@
+.mylist1 {
+    list-style-type: circle;
+}
+
+.mylist2 {
+    list-style-type: square;
+}
+
+.mylist3 {
+    list-style-type: upper-roman;
+}
+.mylist4 {
+    list-style-type: lower-alpha;
+}
+.mylist5 {
+    list-style-type: none;
+}
+.mylist6 {
+    list-style-image: url('firefox_16x16.png');
+}
+.mylist7 {
+    list-style-type: none;
+}
+.mylist7 a {
+    /* Remove underline */
+    text-decoration: none;
+}
+.mylist7 a:hover {
+    text-decoration: underline;
+}
+.mylist7 li {
+    display: inline-block;
+    padding: 3px;
+    border: 2px solid;
+}
+.mylist7 li ul li{
+    display: block;
+    justify-content: left;
+}
+.mylist7 li ul {
+    display: none;
+}
+.mylist7 li:hover ul{
+    display: block;
+    position: relative;
+    margin: 10px auto 0px 0px;
+}
+.mylist7:after{
+    content: "";
+    clear: both;
+}
+.mylist7 li ul li {
+
+}
+
+
+.down {
+    margin-bottom: 70vh;
+}

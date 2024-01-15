@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+#menu {
+    display: flex;
+    height: 13vh;
+    background-color: #095060;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+.box {
+    display: flex;
+    margin: auto;
+}
+.box h4 {
+    margin: auto;
+    color: #fff;
+    text-shadow: -1px 0 #33A8AF, 0 1px #33A8AF, 1px 0 #33A8AF, 0 -1px #33A8AF;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+}
+#menu .box img {
+    margin-left: 10vw;
+}
+#menu ul {
+    list-style-type: none;
+}
+#menu ul li {
+    display: inline-block;
+    margin: 0 14px;
+}
+#menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+#menu ul li a:hover {
+    text-decoration: underline;
+}
+#menu button {
+    border-radius: 35px;
+    border: #33A8AF 3px solid;
+    height: 8vh;
+    padding: 0px 45px;
+    margin-right: 5vw;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+
+.block1 {
+    background-color: #09506080;
+    background-image: url('images/business-women-signature-document\ 1.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: 15vh;
+    height: 83vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2vh;
+}
+.box2 {
+    text-align: center; 
+    width: 50vw;
+}
+.box2 h2 {
+    color: #fff;
+    margin-bottom: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+}
+.box2 p {
+    color: #fff;
+    margin-bottom: 56px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+}
+.box2 button {
+    border-radius: 35px;
+    height: 10vh;
+    border: #33A8AF 3px solid;
+    padding: 0 15px;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+.block2 {
+    background-color: #2285A480;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+}
+.box3 {
+    margin: 2rem;
+}
+.box3 h5 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+}
+.box4 {
+    display: flex;
+    margin: 2rem 15vw;
+}
+.box4 div {
+    display: flex;
+    flex-direction: column;
+}
+.box4 div ul {
+    width: 37vw;    
+    padding: 0px 40px;
+}
+.box4 div ul li {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 24px;
+    letter-spacing: 1px;
+}
+.box4 div p {
+    margin: auto 0;
+    padding: 0 40px;
+    font-family: 'Roboto', sans-serif;  
+    font-weight: 700;
+    font-size: 12px;
+}
+.box4 img {
+    margin: 0 20px;
+}
+
+#contacts {
+    display: flex;
+    flex-direction: column;
+    background-color: #095060;
+    padding-top: 1rem;
+}
+.box5 {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+}
+.box5 p {
+    width: 30vw;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;  
+    font-weight: 500;
+    font-size: 14px;
+}
+.box6 {
+    width: 30vw;
+}
+.box6 p {
+    text-align: center;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;  
+    font-weight: 500;
+    font-size: 14px;
+}
+.box7 {
+    display: flex;
+    justify-content: center;
+    margin: 14px 0;
+}
+.box7 img {
+    margin: 0 12px;
+}
