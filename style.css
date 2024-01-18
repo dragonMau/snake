@@ -37,7 +37,6 @@ li ul {
 li:hover ul {
     display: block;
 }
-li ul {display: block;}
 a {
     color: cyan;
     font-size: 18px;
