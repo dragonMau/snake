@@ -2,10 +2,6 @@
 body {
     background-color: #008;
 }
-div {
-    /* display: flex;
-    height: 100vh; */
-}
 #menu {
     margin: 50px 10vw;
 }
