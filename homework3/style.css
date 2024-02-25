@@ -10,8 +10,10 @@
     height: 13vh;
     background-color: #095060;
     position: fixed;
-    width: 100%;
+    width: 90vw;
     top: 0;
+    padding-left: 10vw;
+    justify-content: space-between;
 }
 .box {
     display: flex;
@@ -25,8 +27,8 @@
     font-weight: 900;
     font-size: 22px;
 }
-#menu .box img {
-    margin-left: 10vw;
+#menu .box {
+    margin: auto 0;
 }
 #menu ul {
     list-style-type: none;
@@ -50,7 +52,7 @@
     border: #33A8AF 3px solid;
     height: 3.5rem;
     padding: 0px 45px;
-    margin-right: 5vw;
+    margin-right: 10vw;    
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 12px;
